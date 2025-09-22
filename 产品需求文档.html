@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTDUex H5移动端 - 产品需求文档</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(214.3 31.8% 91.4%)",
+                        input: "hsl(214.3 31.8% 91.4%)",
+                        ring: "hsl(222.2 84% 4.9%)",
+                        background: "hsl(0 0% 100%)",
+                        foreground: "hsl(222.2 84% 4.9%)",
+                        primary: {
+                            DEFAULT: "hsl(222.2 47.4% 11.2%)",
+                            foreground: "hsl(210 40% 98%)",
+                        },
+                        secondary: {
+                            DEFAULT: "hsl(210 40% 96%)",
+                            foreground: "hsl(222.2 84% 4.9%)",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(210 40% 96%)",
+                            foreground: "hsl(215.4 16.3% 46.9%)",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(210 40% 96%)",
+                            foreground: "hsl(222.2 84% 4.9%)",
+                        },
+                        card: {
+                            DEFAULT: "hsl(0 0% 100%)",
+                            foreground: "hsl(222.2 84% 4.9%)",
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .prose h2 {
+            @apply scroll-mt-20;
+        }
+        .prose h3 {
+            @apply scroll-mt-20;
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground antialiased">
+    <div class="container max-w-4xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center pb-8 mb-8 border-b border-border">
+            <h1 class="text-3xl font-bold tracking-tight mb-2">BTDUex H5移动端产品需求文档</h1>
+            <p class="text-muted-foreground">数字货币交易所移动端优化需求</p>
+        </header>
+
+        <!-- Table of Contents -->
+        <div class="bg-card border border-border rounded-lg mb-6">
+            <div class="bg-muted border-b border-border px-6 py-3">
+                <h3 class="font-semibold flex items-center gap-2">
+                    <span class="text-lg">📋</span>
+                    文档目录
+                </h3>
+            </div>
+            <div class="p-6">
+                <div class="bg-muted rounded-md p-4 border-l-4 border-primary">
+                    <h4 class="font-medium mb-3">需求概览</h4>
+                    <nav class="space-y-2">
+                        <a href="#requirement1" class="block text-primary hover:text-primary/80 underline underline-offset-4 hover:bg-accent hover:text-accent-foreground rounded-md px-3 py-2 transition-all duration-200 hover:translate-x-1">
+                            H5 - APP推广悬浮窗
+                        </a>
+                        <a href="#requirement2" class="block text-primary hover:text-primary/80 underline underline-offset-4 hover:bg-accent hover:text-accent-foreground rounded-md px-3 py-2 transition-all duration-200 hover:translate-x-1">
+                            H5 下载页 - 区分安卓和 iOS
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requirement 1: APP推广悬浮窗 -->
+        <div class="bg-card border border-border rounded-lg mb-6" id="requirement1">
+            <div class="bg-muted border-b border-border px-6 py-4">
+                <h2 class="text-xl font-semibold flex items-center gap-2">
+                    <span class="text-xl">🎯</span>
+                    H5 - APP推广悬浮窗
+                </h2>
+            </div>
+            <div class="p-6 prose prose-slate max-w-none">
+                <h3 class="text-lg font-semibold mb-4">1. 需求概述</h3>
+                <div class="bg-muted rounded-md p-4 border-l-4 border-primary mb-6">
+                    <p class="mb-0"><strong>核心目标：</strong>在BTDUex数字货币交易所H5移动端站点的主要页面中，添加一个固定在页面顶部的APP推广悬浮窗，引导未登录用户下载APP应用。</p>
+                </div>
+
+                <h3 class="text-lg font-semibold mb-4">2. 功能需求</h3>
+
+                <h4 class="font-medium mb-3">2.1 显示页面</h4>
+                <div class="bg-accent rounded-md p-4 border-l-4 border-muted-foreground mb-4">
+                    <p class="font-medium mb-2">悬浮窗显示的5个一级页面：</p>
+                    <ul class="space-y-1 mb-0">
+                        <li class="flex items-center gap-2"><span>🏠</span> 首页</li>
+                        <li class="flex items-center gap-2"><span>📊</span> 行情</li>
+                        <li class="flex items-center gap-2"><span>💱</span> 交易</li>
+                        <li class="flex items-center gap-2"><span>📈</span> 合约</li>
+                        <li class="flex items-center gap-2"><span>💰</span> 资产</li>
+                    </ul>
+                </div>
+
+                <h4 class="font-medium mb-3">2.2 显示条件</h4>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-card border border-border rounded-md p-4">
+                        <h5 class="font-medium mb-2 flex items-center gap-2">
+                            <span>👤</span> 用户状态检测
+                        </h5>
+                        <ul class="text-sm space-y-1">
+                            <li><strong>显示对象：</strong>仅对未登录用户显示</li>
+                            <li><strong>隐藏条件：</strong>用户登录后自动隐藏</li>
+                            <li><strong>显示恢复：</strong>用户退出登录后重新显示</li>
+                        </ul>
+                    </div>
+                    <div class="bg-card border border-border rounded-md p-4">
+                        <h5 class="font-medium mb-2 flex items-center gap-2">
+                            <span>🔄</span> 交互行为
+                        </h5>
+                        <ul class="text-sm space-y-1">
+                            <li><strong>重复显示：</strong>用户手动关闭后，下次重新打开H5时会重新显示</li>
+                            <li><strong>主题适配：</strong>支持浅色主题和深色主题显示</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4 class="font-medium mb-3">2.3 悬浮窗内容结构</h4>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-card border border-border rounded-md p-4">
+                        <h5 class="font-medium mb-2 flex items-center gap-2">
+                            <span>👈</span> 左侧内容区
+                        </h5>
+                        <ul class="text-sm space-y-1">
+                            <li><strong>LOGO：</strong>BTDUex品牌标识</li>
+                            <li><strong>品牌名称：</strong>BTDUex</li>
+                            <li><strong>Slogan：</strong>交易无界，价值互链</li>
+                        </ul>
+                    </div>
+                    <div class="bg-card border border-border rounded-md p-4">
+                        <h5 class="font-medium mb-2 flex items-center gap-2">
+                            <span>👉</span> 右侧操作区
+                        </h5>
+                        <ul class="text-sm space-y-1">
+                            <li><strong>下载按钮：</strong>引导用户下载APP</li>
+                            <li><strong>关闭按钮：</strong>X图标，用户可手动关闭悬浮窗</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-semibold mb-4">3. 交互逻辑</h3>
+
+                <h4 class="font-medium mb-3">3.1 下载按钮交互</h4>
+                <div class="bg-accent rounded-md p-4 border-l-4 border-muted-foreground mb-4">
+                    <p class="font-medium mb-2">智能平台识别与跳转：</p>
+                    <ul class="space-y-1">
+                        <li><strong>功能：</strong>点击跳转到APP下载页面</li>
+                        <li><strong>平台识别：</strong>需要自动识别用户设备系统（iOS/Android）</li>
+                        <li><strong>跳转逻辑：</strong>
+                            <ul class="ml-4 mt-1 space-y-1">
+                                <li>iOS用户：跳转到iOS下载页面（显示App Store链接、桌面 APP 的安装教程）</li>
+                                <li>Android用户：跳转到Android下载页面（显示Google Play、桌面 APP 的安装教程）</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <h4 class="font-medium mb-3">3.2 关闭按钮交互</h4>
+                <div class="bg-accent rounded-md p-4 border-l-4 border-muted-foreground mb-4">
+                    <ul class="space-y-1 mb-0">
+                        <li><strong>功能：</strong>点击关闭当前悬浮窗</li>
+                        <li><strong>页面响应：</strong>关闭后主页面内容自动上移填补空间</li>
+                        <li><strong>记忆功能：</strong>本次会话内关闭后不再显示，但下次重新访问H5时会重新显示</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-lg font-semibold mb-4">4. 样式参考</h3>
+                <div class="bg-accent rounded-md p-4 border-l-4 border-muted-foreground">
+                    <h4 class="font-medium mb-3 flex items-center gap-2">
+                        <span>🎨</span> 悬浮窗设计效果图
+                    </h4>
+                    <div class="flex justify-center">
+                        <img src="image.png" alt="APP推广悬浮窗设计效果图" class="max-w-[60%] h-auto rounded-md shadow-lg border border-border">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requirement 2: H5 下载页 -->
+        <div class="bg-card border border-border rounded-lg mb-6" id="requirement2">
+            <div class="bg-muted border-b border-border px-6 py-4">
+                <h2 class="text-xl font-semibold flex items-center gap-2">
+                    <span class="text-xl">📱</span>
+                    H5 下载页 - 区分安卓和 iOS
+                </h2>
+            </div>
+            <div class="p-6 prose prose-slate max-w-none">
+                <h3 class="text-lg font-semibold mb-4">1. 需求概述</h3>
+                <div class="bg-muted rounded-md p-4 border-l-4 border-primary mb-6">
+                    <p class="mb-0"><strong>核心目标：</strong>在BTDUex数字货币交易所H5移动端站点的下载页中，根据用户设备系统（iOS/Android）显示不同的下载方式选项。</p>
+                </div>
+
+                <h3 class="text-lg font-semibold mb-4">2. 功能需求</h3>
+
+                <h4 class="font-medium mb-3">2.1 显示页面</h4>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-card border border-border rounded-md p-4">
+                        <h5 class="font-medium mb-2 flex items-center gap-2">
+                            <span>🍎</span> iOS下载页
+                        </h5>
+                        <ul class="text-sm space-y-1">
+                            <li>App Store下载及其下载说明</li>
+                            <li>桌面 APP 的安装教程入口</li>
+                            <li>顶部右上展示多语言按钮</li>
+                            <li>跟随设备展示黑白版</li>
+                        </ul>
+                    </div>
+                    <div class="bg-card border border-border rounded-md p-4">
+                        <h5 class="font-medium mb-2 flex items-center gap-2">
+                            <span>🤖</span> Android下载页
+                        </h5>
+                        <ul class="text-sm space-y-1">
+                            <li>Google Play下载及其下载说明</li>
+                            <li>桌面 APP 的安装教程入口</li>
+                            <li>顶部右上展示多语言按钮</li>
+                            <li>跟随设备展示黑白版</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-accent rounded-md p-4 border-l-4 border-muted-foreground mb-4">
+                    <h4 class="font-medium mb-2">共同展示元素：</h4>
+                    <ul class="space-y-1 mb-0">
+                        <li>顶部左上 logo、品牌名</li>
+                        <li>slogan"交易无界，价值互链"</li>
+                        <li>各端截图</li>
+                    </ul>
+                </div>
+
+                <h4 class="font-medium mb-3">2.2 浏览器判断</h4>
+                <div class="bg-accent rounded-md p-4 border-l-4 border-muted-foreground mb-4">
+                    <p class="font-medium mb-2">智能跳转逻辑：</p>
+                    <p class="mb-2">根据用户的设备系统和浏览器类型，智能决定桌面 APP 安装教程入口的跳转链接，确保为不同环境下的用户提供最适合的安装指导。</p>
+                    <p class="mb-2 text-sm text-muted-foreground">举例说明：</p>
+                    <ul class="space-y-1 mb-3">
+                        <li><strong>苹果手机 + Chrome浏览器</strong> → Chrome安装教程页面</li>
+                        <li><strong>苹果手机 + Safari浏览器</strong> → Safari安装教程页面</li>
+                    </ul>
+                    <a href="https://m.hibt.com/download" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors duration-200 text-sm font-medium">
+                        参考竞品链接体验
+                    </a>
+                </div>
+
+                <h3 class="text-lg font-semibold mb-4">3. 样式参考</h3>
+                <div class="bg-accent rounded-md p-4 border-l-4 border-muted-foreground">
+                    <h4 class="font-medium mb-3 flex items-center gap-2">
+                        <span>📱</span> 设计效果图
+                    </h4>
+                    <div class="flex justify-center">
+                        <img src="35e73a520fcfee963eb557dfb4ef6f2b.jpg" alt="H5下载页设计效果图" class="max-w-[60%] h-auto rounded-md shadow-lg border border-border">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 text-muted-foreground text-sm border-t border-border mt-8">
+            <p>BTDUex 数字货币交易所 H5移动端产品需求文档 | 生成时间：2025年</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 添加阅读进度指示器
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+
+            if (!document.getElementById('progress-bar')) {
+                const progressBar = document.createElement('div');
+                progressBar.id = 'progress-bar';
+                progressBar.className = 'fixed top-0 left-0 h-1 bg-primary z-50 transition-all duration-300';
+                progressBar.style.width = scrolled + '%';
+                document.body.appendChild(progressBar);
+            } else {
+                document.getElementById('progress-bar').style.width = scrolled + '%';
+            }
+        });
+    </script>
+</body>
+</html>
